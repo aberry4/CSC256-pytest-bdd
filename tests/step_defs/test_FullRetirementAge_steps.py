@@ -3,7 +3,6 @@ from functools import partial
 from retirement import date_validation
 from RetirementCalculator import *
 
-
 EXTRA_TYPES = {
     'Number': int,
     'String': str,
@@ -18,7 +17,6 @@ CONVERTERS = {
     'retirement_date_year': int,
 }
 parse_num = partial(parsers.cfparse, extra_types=EXTRA_TYPES)
-
 
 scenarios('../features/FullRetirementAge.feature', example_converters=CONVERTERS)
 
@@ -69,6 +67,7 @@ def check_retirement_date_year(age_calc, retirement_date_year):
     age_calc.calculate_retirement()
     assert age_calc.retirement_date_year == retirement_date_year
 
+
 @when(parsers.cfparse('the user enters an invalid "{year_choice:String}" year of birth', extra_types=EXTRA_TYPES))
 @when('the user enters an invalid "<year_choice>" year of birth')
 def enter_invalid_year(year_choice):
@@ -85,6 +84,7 @@ def check_output(capfd):
 def check_ask_new_year(capfd):
     captured = capfd.readouterr()
     assert "Enter the year of birth or press 'enter' to exit: " in captured.out
+
 
 @given(parsers.cfparse('the user has entered a valid "{year_choice:String}" year of birth', extra_types=EXTRA_TYPES))
 @given('the user has entered a valid "<year_choice>" year of birth')
@@ -120,5 +120,3 @@ def press_enter(monkeypatch, capfd):
 @then("the program exits")
 def step_impl():
     assert SystemExit
-
-
