@@ -29,7 +29,6 @@ Feature: Full Retirement Age Calculation
 
       Examples: Invalid years
           | year_choice |
-          | 1800        |
           | 1899        |
           | 2021        |
 
