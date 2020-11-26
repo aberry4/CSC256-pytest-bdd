@@ -118,7 +118,7 @@ def press_enter(monkeypatch, capfd):
 
 
 @then("the program exits")
-def step_impl():
+def check_exit():
     assert SystemExit
 
 
